@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>~*~ JanW's Awesome Homepage ~*~ WELCOME ~*~</title>
+  <style>
+    /* ===== GLOBAL RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #000022;
+      color: #00ff00;
+      font-family: "Comic Sans MS", "Chalkboard SE", cursive;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ===== CUSTOM CURSOR ===== */
+    #custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cpolygon points='0,0 6,18 9,12 16,20 19,17 11,9 17,6' fill='%23ffffff' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E") no-repeat;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-2px, -2px);
+    }
+
+    /* ===== STARFIELD CANVAS ===== */
+    #starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ===== SPARKLE TRAIL ===== */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99998;
+      font-size: 16px;
+      animation: sparkle-fade 0.8s ease-out forwards;
+    }
+    @keyframes sparkle-fade {
+      0%   { opacity: 1; transform: scale(1) translateY(0); }
+      100% { opacity: 0; transform: scale(0.2) translateY(-20px); }
+    }
+
+    /* ===== MAIN LAYOUT ===== */
+    #page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    /* ===== MARQUEE TOP BANNER ===== */
+    .top-marquee-bar {
+      background: linear-gradient(90deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+      background-size: 200% 100%;
+      animation: gradshift 3s linear infinite;
+      padding: 4px 0;
+      font-size: 13px;
+      font-weight: bold;
+      color: #000;
+      text-shadow: none;
+      letter-spacing: 2px;
+      overflow: hidden;
+    }
+    @keyframes gradshift {
+      0%   { background-position: 0% 0%; }
+      100% { background-position: 200% 0%; }
+    }
+    .top-marquee-bar marquee { display: block; }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      text-align: center;
+      padding: 20px 0 10px;
+    }
+    .site-title {
+      font-size: clamp(28px, 6vw, 56px);
+      font-weight: bold;
+      animation: rainbow-text 2s linear infinite;
+      text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+      display: inline-block;
+    }
+    @keyframes rainbow-text {
+      0%   { color: #ff0000; }
+      16%  { color: #ff9900; }
+      33%  { color: #ffff00; }
+      50%  { color: #00ff00; }
+      66%  { color: #00ffff; }
+      83%  { color: #ff00ff; }
+      100% { color: #ff0000; }
+    }
+
+    .subtitle {
+      font-size: 16px;
+      animation: blink 1s step-start infinite;
+      color: #ffff00;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* spinning star decorations */
+    .spin-star {
+      display: inline-block;
+      font-size: 28px;
+      animation: spin 2s linear infinite;
+    }
+    .spin-star.rev { animation-direction: reverse; }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav.navbar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 14px 0;
+    }
+    nav.navbar a {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      background: #000044;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.2s;
+      animation: navglow 2s ease-in-out infinite alternate;
+    }
+    nav.navbar a:hover {
+      background: #00ffff;
+      color: #000;
+    }
+    nav.navbar a::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(0,255,255,0.3) 0%, transparent 70%);
+      animation: btn-shine 3s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes btn-shine {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes navglow {
+      from { box-shadow: 0 0 4px #00ffff, 0 0 8px #00ffff; }
+      to   { box-shadow: 0 0 14px #00ffff, 0 0 28px #00ffff, 0 0 42px #0044ff; }
+    }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg,
+        red, orange, yellow, green, cyan, blue, violet, red);
+      background-size: 400% 100%;
+      animation: divider-scroll 2s linear infinite;
+      margin: 12px 0;
+      border: none;
+    }
+    @keyframes divider-scroll {
+      0%   { background-position: 0% 0%; }
+      100% { background-position: 400% 0%; }
+    }
+
+    /* ===== CONTENT GRID ===== */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 12px;
+      margin: 10px 0;
+    }
+    @media (max-width: 700px) {
+      .content-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== BOXES ===== */
+    .box {
+      border: 2px solid #00ff00;
+      background: rgba(0, 20, 0, 0.8);
+      padding: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,255,0,0.07), transparent);
+      animation: scanline 4s linear infinite;
+    }
+    @keyframes scanline {
+      0%   { left: -100%; }
+      100% { left: 200%; }
+    }
+    .box-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #ffff00;
+      border-bottom: 1px solid #00ff00;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+      text-align: center;
+      animation: blink 1.5s step-start infinite;
+    }
+
+    /* ===== PROFILE SECTION ===== */
+    .profile-pic {
+      width: 100%;
+      max-width: 120px;
+      display: block;
+      margin: 0 auto 8px;
+      border: 3px solid #ff00ff;
+      animation: profile-border 2s linear infinite;
+      border-radius: 4px;
+    }
+    @keyframes profile-border {
+      0%   { border-color: #ff00ff; box-shadow: 0 0 8px #ff00ff; }
+      25%  { border-color: #00ffff; box-shadow: 0 0 8px #00ffff; }
+      50%  { border-color: #ffff00; box-shadow: 0 0 8px #ffff00; }
+      75%  { border-color: #00ff00; box-shadow: 0 0 8px #00ff00; }
+      100% { border-color: #ff00ff; box-shadow: 0 0 8px #ff00ff; }
+    }
+    .profile-info { font-size: 12px; line-height: 1.8; color: #aaffaa; }
+    .profile-info strong { color: #ffff00; }
+
+    /* ===== STATUS MOOD ===== */
+    .mood-box {
+      text-align: center;
+      font-size: 11px;
+      margin-top: 8px;
+      padding: 4px;
+      background: #001100;
+      border: 1px dashed #00ff00;
+    }
+    .mood-emoji { font-size: 22px; animation: bounce 0.6s ease-in-out infinite alternate; display: inline-block; }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-6px); }
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content { font-size: 13px; line-height: 1.7; color: #ccffcc; }
+    .main-content h2 {
+      font-size: 18px;
+      color: #ff00ff;
+      text-shadow: 0 0 8px #ff00ff;
+      margin-bottom: 6px;
+    }
+    .main-content p { margin-bottom: 8px; }
+
+    /* ===== UNDER CONSTRUCTION ===== */
+    .under-construction {
+      text-align: center;
+      margin: 10px 0;
+      padding: 8px;
+      background: repeating-linear-gradient(
+        45deg,
+        #000000,
+        #000000 10px,
+        #ffff00 10px,
+        #ffff00 20px
+      );
+      border: 3px solid #ffff00;
+    }
+    .under-construction .uc-text {
+      background: #000;
+      display: inline-block;
+      padding: 4px 12px;
+      color: #ffff00;
+      font-weight: bold;
+      font-size: 16px;
+      animation: blink 0.7s step-start infinite;
+    }
+    .hard-hat { font-size: 28px; animation: spin 1.5s linear infinite; display: inline-block; }
+
+    /* ===== VISITOR COUNTER ===== */
+    .counter-box {
+      text-align: center;
+      font-size: 11px;
+      color: #00ffff;
+    }
+    .counter-digits {
+      display: inline-flex;
+      gap: 2px;
+      margin: 4px 0;
+    }
+    .counter-digit {
+      background: #001133;
+      border: 1px solid #00ffff;
+      color: #00ffff;
+      font-family: "Courier New", monospace;
+      font-size: 20px;
+      font-weight: bold;
+      width: 24px;
+      height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 6px #00ffff inset;
+      animation: counter-flicker 5s ease-in-out infinite;
+    }
+    @keyframes counter-flicker {
+      0%, 90%, 100% { opacity: 1; }
+      92%            { opacity: 0.6; }
+      94%            { opacity: 1; }
+      96%            { opacity: 0.4; }
+    }
+
+    /* ===== LINKS LIST ===== */
+    .links-list { list-style: none; font-size: 12px; }
+    .links-list li { margin-bottom: 4px; }
+    .links-list li::before { content: "✦ "; color: #ff00ff; }
+    .links-list a { color: #00ffff; text-decoration: underline; }
+    .links-list a:hover { color: #ffff00; }
+
+    /* ===== SONG PLAYER ===== */
+    .now-playing {
+      font-size: 11px;
+      text-align: center;
+      padding: 6px;
+      background: #001100;
+      border: 1px solid #00ff00;
+      margin-top: 8px;
+    }
+    .now-playing .song-title {
+      display: inline-block;
+      animation: marquee-anim 8s linear infinite;
+      white-space: nowrap;
+      color: #00ff00;
+    }
+    @keyframes marquee-anim {
+      0%   { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ===== GUESTBOOK ===== */
+    .guestbook-entry {
+      border: 1px dashed #00ff00;
+      padding: 6px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      background: rgba(0,40,0,0.5);
+    }
+    .guestbook-entry .gb-name { color: #ff00ff; font-weight: bold; }
+    .guestbook-entry .gb-date { color: #888; font-size: 10px; }
+
+    /* ===== AWARDS / BADGES ===== */
+    .badges { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; margin-top: 8px; }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      font-size: 10px;
+      font-weight: bold;
+      border: 2px solid;
+      animation: badge-pulse 1.5s ease-in-out infinite alternate;
+    }
+    .badge-1 { border-color: #ff00ff; color: #ff00ff; animation-delay: 0s; }
+    .badge-2 { border-color: #00ffff; color: #00ffff; animation-delay: 0.3s; }
+    .badge-3 { border-color: #ffff00; color: #ffff00; animation-delay: 0.6s; }
+    .badge-4 { border-color: #ff8800; color: #ff8800; animation-delay: 0.9s; }
+    @keyframes badge-pulse {
+      from { box-shadow: 0 0 2px currentColor; }
+      to   { box-shadow: 0 0 12px currentColor, 0 0 20px currentColor; }
+    }
+
+    /* ===== BOTTOM MARQUEE ===== */
+    .bottom-bar {
+      text-align: center;
+      padding: 8px 0;
+      color: #ff9900;
+      font-size: 12px;
+    }
+
+    /* ===== FLOATING ELEMENTS ===== */
+    .floater {
+      position: fixed;
+      pointer-events: none;
+      z-index: 2;
+      font-size: 22px;
+      animation: floater-drift linear infinite;
+    }
+    @keyframes floater-drift {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===== LOADING PROGRESS BAR ===== */
+    .loading-bar-container {
+      width: 100%;
+      height: 12px;
+      background: #001100;
+      border: 1px solid #00ff00;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+    .loading-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00ff00, #00ffff);
+      animation: loading-fill 3s ease-in-out infinite;
+      box-shadow: 0 0 6px #00ff00;
+    }
+    @keyframes loading-fill {
+      0%   { width: 0%; }
+      50%  { width: 100%; }
+      100% { width: 0%; }
+    }
+
+    /* ===== GLITTER ===== */
+    .glitter-container {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .glitter-dot {
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      animation: glitter-twinkle 1s ease-in-out infinite alternate;
+    }
+    @keyframes glitter-twinkle {
+      from { opacity: 0; transform: scale(0.5); }
+      to   { opacity: 1; transform: scale(1.5); }
+    }
+
+    /* ===== RAINBOW HR ===== */
+    .rainbow-hr {
+      border: none;
+      height: 6px;
+      background: linear-gradient(90deg,
+        red 0%, orange 16%, yellow 33%,
+        green 50%, blue 66%, indigo 83%, violet 100%);
+      margin: 10px 0;
+      animation: rainbow-hr-anim 3s linear infinite;
+      background-size: 200% 100%;
+    }
+    @keyframes rainbow-hr-anim {
+      0%   { background-position: 0% 0%; }
+      100% { background-position: 200% 0%; }
+    }
+
+    /* ===== NEON TEXT ===== */
+    .neon {
+      color: #fff;
+      text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #ff00de,
+        0 0 30px #ff00de,
+        0 0 40px #ff00de;
+      animation: neon-flicker 3s ease-in-out infinite;
+    }
+    @keyframes neon-flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow:
+          0 0 5px #fff,
+          0 0 10px #fff,
+          0 0 20px #ff00de,
+          0 0 30px #ff00de;
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+      }
+    }
+
+    /* ===== TYPEWRITER ===== */
+    .typewriter {
+      overflow: hidden;
+      border-right: 2px solid #00ff00;
+      white-space: nowrap;
+      font-size: 13px;
+      color: #00ff00;
+      animation: typing 4s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      0%   { width: 0; }
+      50%  { width: 100%; }
+      90%  { width: 100%; }
+      100% { width: 0; }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50%       { border-color: #00ff00; }
+    }
+
+    /* ===== TOOLTIP ===== */
+    .has-tooltip { position: relative; cursor: none; }
+    .has-tooltip .tooltip {
+      display: none;
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffff00;
+      color: #000;
+      padding: 3px 8px;
+      font-size: 11px;
+      white-space: nowrap;
+      border: 1px solid #000;
+      z-index: 1000;
+    }
+    .has-tooltip:hover .tooltip { display: block; }
+
+    /* ===== TABLE LAYOUT (retro) ===== */
+    .retro-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .retro-table td {
+      padding: 4px 8px;
+      border: 1px solid #00ff00;
+      vertical-align: top;
+    }
+    .retro-table tr:nth-child(even) td { background: rgba(0,40,0,0.4); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: #556655;
+      padding: 16px 0 24px;
+      border-top: 2px solid #003300;
+      margin-top: 12px;
+    }
+    footer a { color: #00aa00; }
+  </style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div id="custom-cursor"></div>
+
+<!-- Starfield background -->
+<canvas id="starfield"></canvas>
+
+<!-- Floating emoji background -->
+<div id="floaters"></div>
+
+<!-- Top marquee banner -->
+<div class="top-marquee-bar">
+  <marquee scrollamount="5">
+    ★ WELCOME TO MY TOTALLY AWESOME HOMEPAGE ★ &nbsp;&nbsp;&nbsp;
+    Sign my guestbook! &nbsp;&nbsp;&nbsp;
+    Best viewed in 800x600 with Internet Explorer 6 &nbsp;&nbsp;&nbsp;
+    ★ YOU ARE VISITOR #1,337,420 ★ &nbsp;&nbsp;&nbsp;
+    Last updated: January 1, 2003 &nbsp;&nbsp;&nbsp;
+    ☆ No hotlinking! ☆ &nbsp;&nbsp;&nbsp;
+    ★ WELCOME TO MY TOTALLY AWESOME HOMEPAGE ★
+  </marquee>
+</div>
+
+<div id="page-wrapper">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div>
+      <span class="spin-star">✦</span>
+      &nbsp;
+      <span class="site-title">~*~ JanW's Homepage ~*~</span>
+      &nbsp;
+      <span class="spin-star rev">✦</span>
+    </div>
+    <p class="subtitle">⚡ UNDER CONSTRUCTION – Check back later! ⚡</p>
+    <br>
+    <div class="typewriter">Welcome to the most AMAZING website on the internet!!1!</div>
+  </header>
+
+  <hr class="divider">
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <a href="#about">★ About Me ★</a>
+    <a href="#interests">♥ Interests ♥</a>
+    <a href="#gallery">☆ Gallery ☆</a>
+    <a href="#guestbook">✎ Guestbook ✎</a>
+    <a href="#links">⚡ Links ⚡</a>
+    <a href="#contact">✉ Contact ✉</a>
+  </nav>
+
+  <hr class="divider">
+
+  <!-- CONTENT GRID -->
+  <div class="content-grid">
+
+    <!-- LEFT SIDEBAR -->
+    <aside>
+
+      <!-- Profile box -->
+      <div class="box" id="about">
+        <div class="box-title">★ About Me ★</div>
+        <svg class="profile-pic" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#001133"/>
+              <stop offset="100%" stop-color="#000022"/>
+            </radialGradient>
+          </defs>
+          <rect width="120" height="120" fill="url(#bgGrad)"/>
+          <circle cx="60" cy="44" r="22" fill="#ffcc99"/>
+          <ellipse cx="60" cy="95" rx="28" ry="22" fill="#336699"/>
+          <circle cx="52" cy="40" r="3" fill="#333"/>
+          <circle cx="68" cy="40" r="3" fill="#333"/>
+          <path d="M52 52 Q60 58 68 52" stroke="#cc6666" stroke-width="2" fill="none"/>
+          <rect x="0" y="0" width="120" height="120" fill="none" stroke="#ff00ff" stroke-width="3"/>
+        </svg>
+        <div class="profile-info">
+          <strong>Name:</strong> JanW<br>
+          <strong>Age:</strong> 17<br>
+          <strong>Location:</strong> The Internet<br>
+          <strong>Status:</strong> Online ✅<br>
+          <strong>AIM:</strong> kewl_janw03<br>
+          <strong>MSN:</strong> janw@hotmail.com
+        </div>
+        <div class="mood-box">
+          Current mood:<br>
+          <span class="mood-emoji">😎</span><br>
+          <em>totally kewl</em>
+        </div>
+      </div>
+
+      <!-- Loading bar -->
+      <div class="box" style="margin-top:10px;">
+        <div class="box-title">⚡ Site Loading... ⚡</div>
+        <div class="loading-bar-container">
+          <div class="loading-bar-fill"></div>
+        </div>
+        <div style="font-size:10px;color:#00ff00;text-align:center;">Please wait...</div>
+      </div>
+
+      <!-- Visitor counter -->
+      <div class="box" style="margin-top:10px;" id="counter-section">
+        <div class="box-title">👁 Visitors 👁</div>
+        <div class="counter-box">
+          You are visitor:<br>
+          <div class="counter-digits" id="counter-digits">
+            <!-- digits inserted by JS -->
+          </div>
+          <br>since Jan 2003
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div class="box" style="margin-top:10px;">
+        <div class="box-title">🏆 Awards 🏆</div>
+        <div class="badges">
+          <span class="badge badge-1">BEST SITE</span>
+          <span class="badge badge-2">HTML PRO</span>
+          <span class="badge badge-3">WEBMASTER</span>
+          <span class="badge badge-4">KEWL SITE</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <!-- Welcome -->
+      <div class="box">
+        <div class="box-title">~*~ Welcome! ~*~</div>
+        <p>
+          OMG HI EVERYONE!!!1!! Welcome to my super awesome homepage!
+          I made this site ALL BY MYSELF using Notepad!! It took me like
+          3 whole weeks but it was TOTALLY WORTH IT. Please sign my
+          guestbook and come back every day because I update it ALL THE TIME!
+        </p>
+        <p>
+          <span class="neon">Best viewed at 800×600 in Internet Explorer 6!</span>
+        </p>
+
+        <!-- Under construction sign -->
+        <div class="under-construction" style="margin-top:10px;">
+          <span class="hard-hat">🚧</span>
+          <div class="uc-text">⚠ UNDER CONSTRUCTION ⚠</div>
+          <span class="hard-hat rev" style="animation-direction:reverse;">🚧</span>
+        </div>
+      </div>
+
+      <hr class="rainbow-hr">
+
+      <!-- Interests -->
+      <div class="box" id="interests">
+        <div class="box-title">♥ My Interests ♥</div>
+        <table class="retro-table">
+          <tr>
+            <td>🎵 Music</td>
+            <td>Linkin Park, Avril Lavigne, Good Charlotte</td>
+          </tr>
+          <tr>
+            <td>🎮 Games</td>
+            <td>Counter-Strike, Runescape, The Sims</td>
+          </tr>
+          <tr>
+            <td>📺 TV</td>
+            <td>Dragon Ball Z, Buffy, X-Files</td>
+          </tr>
+          <tr>
+            <td>💻 Tech</td>
+            <td>Winamp, mIRC, Kazaa, Napster</td>
+          </tr>
+          <tr>
+            <td>📖 Books</td>
+            <td>Harry Potter, Lord of the Rings</td>
+          </tr>
+          <tr>
+            <td>🎨 Hobbies</td>
+            <td>HTML coding, making GIF animations, fan art</td>
+          </tr>
+        </table>
+      </div>
+
+      <hr class="rainbow-hr">
+
+      <!-- Gallery placeholder -->
+      <div class="box" id="gallery">
+        <div class="box-title">☆ My Gallery ☆</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+          <!-- SVG placeholder images with animations -->
+          <svg width="90" height="70" viewBox="0 0 90 70" style="border:2px solid #ff00ff;animation:profile-border 2s linear infinite;">
+            <rect width="90" height="70" fill="#110022"/>
+            <circle cx="45" cy="30" r="18" fill="none" stroke="#ff00ff" stroke-width="2">
+              <animateTransform attributeName="transform" type="rotate" from="0 45 30" to="360 45 30" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <text x="45" y="62" text-anchor="middle" font-size="10" fill="#ff00ff">pic01.gif</text>
+          </svg>
+          <svg width="90" height="70" viewBox="0 0 90 70" style="border:2px solid #00ffff;animation:profile-border 2s linear infinite 0.5s;">
+            <rect width="90" height="70" fill="#001122"/>
+            <polygon points="45,10 80,60 10,60" fill="none" stroke="#00ffff" stroke-width="2">
+              <animateTransform attributeName="transform" type="rotate" from="0 45 35" to="360 45 35" dur="4s" repeatCount="indefinite"/>
+            </polygon>
+            <text x="45" y="67" text-anchor="middle" font-size="10" fill="#00ffff">pic02.gif</text>
+          </svg>
+          <svg width="90" height="70" viewBox="0 0 90 70" style="border:2px solid #ffff00;animation:profile-border 2s linear infinite 1s;">
+            <rect width="90" height="70" fill="#111100"/>
+            <rect x="20" y="10" width="50" height="40" fill="none" stroke="#ffff00" stroke-width="2">
+              <animateTransform attributeName="transform" type="rotate" from="0 45 30" to="360 45 30" dur="5s" repeatCount="indefinite"/>
+            </rect>
+            <text x="45" y="67" text-anchor="middle" font-size="10" fill="#ffff00">pic03.gif</text>
+          </svg>
+          <svg width="90" height="70" viewBox="0 0 90 70" style="border:2px solid #ff8800;animation:profile-border 2s linear infinite 1.5s;">
+            <rect width="90" height="70" fill="#110800"/>
+            <text x="45" y="35" text-anchor="middle" font-size="24" fill="#ff8800">★
+              <animateTransform attributeName="transform" type="scale" values="1;1.4;1" dur="1s" repeatCount="indefinite"/>
+            </text>
+            <text x="45" y="62" text-anchor="middle" font-size="10" fill="#ff8800">pic04.gif</text>
+          </svg>
+        </div>
+        <p style="text-align:center;font-size:11px;margin-top:8px;color:#888;">
+          Click thumbnails to view full size! (total: 247 pics)
+        </p>
+      </div>
+
+      <hr class="rainbow-hr">
+
+      <!-- Guestbook -->
+      <div class="box" id="guestbook">
+        <div class="box-title">✎ Guestbook ✎</div>
+        <div class="guestbook-entry">
+          <span class="gb-name">xX_DarkAngel_Xx</span>
+          <span class="gb-date"> – 12/25/2002</span><br>
+          omg ur site is SO KEWL!!! i luv the backgrounds!!
+          added u 2 my favs!! sign mine back!! 😊
+        </div>
+        <div class="guestbook-entry">
+          <span class="gb-name">CoolDude2003</span>
+          <span class="gb-date"> – 12/18/2002</span><br>
+          great site!! i found it on neopets lol. the animated stars
+          are awesome!! keep it up!!! ✌
+        </div>
+        <div class="guestbook-entry">
+          <span class="gb-name">SakuraFan99</span>
+          <span class="gb-date"> – 11/30/2002</span><br>
+          HI OMG I LOVE YOUR SITE SO MUCH!!! the winamp skins section
+          is the best!! u r like the best webmaster ever!!! 🌸🌸🌸
+        </div>
+        <div style="text-align:center;margin-top:8px;">
+          <a href="#guestbook" style="color:#ffff00;font-weight:bold;font-size:13px;animation:blink 1s step-start infinite;display:inline-block;">
+            ➤ Sign My Guestbook! ➤
+          </a>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside>
+
+      <!-- Now Playing -->
+      <div class="box">
+        <div class="box-title">🎵 Now Playing 🎵</div>
+        <div class="now-playing">
+          ♪ <span class="song-title">Linkin Park – In The End &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Evanescence – Bring Me To Life &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Avril Lavigne – Complicated</span> ♪
+        </div>
+        <div style="text-align:center;margin-top:6px;">
+          <span style="font-size:20px;animation:bounce 0.5s ease-in-out infinite alternate;display:inline-block;">🎸</span>
+          <span style="font-size:20px;animation:bounce 0.5s ease-in-out infinite alternate 0.1s;display:inline-block;">🎵</span>
+          <span style="font-size:20px;animation:bounce 0.5s ease-in-out infinite alternate 0.2s;display:inline-block;">🎸</span>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="box" style="margin-top:10px;" id="links">
+        <div class="box-title">⚡ Kewl Links ⚡</div>
+        <ul class="links-list">
+          <li><a href="#">My Other Site</a></li>
+          <li><a href="#">My Neopets</a></li>
+          <li><a href="#">My DeviantArt</a></li>
+          <li><a href="#">My Xanga</a></li>
+          <li><a href="#">My LiveJournal</a></li>
+          <li><a href="#">My Winamp Skins</a></li>
+          <li><a href="#">Goat, the band</a></li>
+          <li><a href="#">Free Cursors!</a></li>
+          <li><a href="#">Web Rings</a></li>
+        </ul>
+      </div>
+
+      <!-- Latest News / Diary -->
+      <div class="box" style="margin-top:10px;" id="contact">
+        <div class="box-title">📔 Latest Update</div>
+        <div style="font-size:11px;color:#aaffaa;">
+          <strong style="color:#ffff00;">Jan 1, 2003</strong><br>
+          HAPPY NEW YEAR EVERYONE!!!
+          I added new pics to the gallery and
+          updated my interests page. Also I got a
+          new Linkin Park layout which is SOOO kewl!
+          <br><br>
+          <strong style="color:#ffff00;">Dec 25, 2002</strong><br>
+          MERRY XMAS!! i got a new computer with
+          Windows XP!!! it has 512mb RAM omg so fast!!
+        </div>
+      </div>
+
+      <!-- Web ring -->
+      <div class="box" style="margin-top:10px;">
+        <div class="box-title">🔗 Web Ring</div>
+        <div style="text-align:center;font-size:11px;color:#aaaaff;">
+          <div style="border:1px solid #aaaaff;padding:4px;background:#000022;">
+            Anime Fan Web Ring<br>
+            <a href="#" style="color:#00ffff;">◄ Prev</a>
+            &nbsp;|&nbsp;
+            <a href="#" style="color:#00ffff;">Next ►</a>
+            <br>
+            <a href="#" style="color:#ffff00;">Random</a>
+            &nbsp;|&nbsp;
+            <a href="#" style="color:#ffff00;">Join!</a>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+  </div><!-- /.content-grid -->
+
+  <!-- BOTTOM MARQUEE -->
+  <hr class="divider">
+  <div class="bottom-bar">
+    <marquee scrollamount="3" direction="right">
+      ✧ Thanks for visiting! ✧ &nbsp; Please don't steal my layout! &nbsp;
+      ✧ Best viewed in IE6 800x600 &nbsp; ✧ Made with ♥ and Notepad
+    </marquee>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © 2003 JanW's Homepage – All Rights Reserved<br>
+      <span style="font-size:10px;">
+        This page has been visited <strong id="footer-counter">1,337,420</strong> times since January 2003.
+      </span>
+    </p>
+    <p style="margin-top:6px;">
+      <a href="#">Home</a> |
+      <a href="#">About</a> |
+      <a href="#">Gallery</a> |
+      <a href="#">Links</a> |
+      <a href="#">Contact</a>
+    </p>
+    <p style="margin-top:6px;animation:blink 2s step-start infinite;">
+      ★ This site is best viewed with your eyes open ★
+    </p>
+  </footer>
+
+</div><!-- /#page-wrapper -->
+
+<script>
+  // ===== CUSTOM CURSOR =====
+  const cursor = document.getElementById('custom-cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+    spawnSparkle(e.clientX, e.clientY);
+  });
+
+  const sparkleChars = ['✦','✧','★','☆','✨','💫','⭐','🌟'];
+  let lastSparkle = 0;
+  function spawnSparkle(x, y) {
+    const now = Date.now();
+    if (now - lastSparkle < 80) return;
+    lastSparkle = now;
+    const el = document.createElement('div');
+    el.className = 'sparkle';
+    el.textContent = sparkleChars[Math.floor(Math.random() * sparkleChars.length)];
+    el.style.left = (x + Math.random() * 20 - 10) + 'px';
+    el.style.top  = (y + Math.random() * 20 - 10) + 'px';
+    el.style.color = `hsl(${Math.random()*360}, 100%, 70%)`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 800);
+  }
+
+  // ===== STARFIELD =====
+  const canvas = document.getElementById('starfield');
+  const ctx    = canvas.getContext('2d');
+  let stars    = [];
+
+  function resizeCanvas() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function initStars(count) {
+    stars = [];
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 0.3,
+        speed: Math.random() * 0.4 + 0.05,
+        opacity: Math.random(),
+        opDir: (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 0.02 + 0.005),
+        color: `hsl(${Math.random()*60+180}, 100%, ${60+Math.random()*30}%)`,
+      });
+    }
+  }
+  initStars(180);
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      s.opacity += s.opDir;
+      if (s.opacity >= 1) { s.opacity = 1; s.opDir = -Math.abs(s.opDir); }
+      if (s.opacity <= 0) { s.opacity = 0; s.opDir =  Math.abs(s.opDir); }
+      s.y -= s.speed;
+      if (s.y < 0) { s.y = canvas.height; s.x = Math.random() * canvas.width; }
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.color;
+      ctx.globalAlpha = s.opacity;
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+
+  // ===== VISITOR COUNTER =====
+  const counterValue = '1337420';
+  const digitsEl = document.getElementById('counter-digits');
+  counterValue.split('').forEach(d => {
+    const span = document.createElement('span');
+    span.className = 'counter-digit';
+    span.textContent = d;
+    span.style.animationDelay = (Math.random() * 3) + 's';
+    digitsEl.appendChild(span);
+  });
+
+  // ===== FLOATING EMOJIS =====
+  const floatEmojis = ['✨','💫','⭐','🌟','💎','🔥','❤️','🎵','🎸','🦋','🌈','⚡'];
+  const floatersEl  = document.getElementById('floaters');
+
+  function spawnFloater() {
+    const el = document.createElement('div');
+    el.className = 'floater';
+    el.textContent = floatEmojis[Math.floor(Math.random() * floatEmojis.length)];
+    el.style.left   = Math.random() * 100 + 'vw';
+    el.style.bottom = '-40px';
+    const dur = 6 + Math.random() * 8;
+    el.style.animationDuration = dur + 's';
+    el.style.animationDelay    = '0s';
+    el.style.fontSize           = (14 + Math.random() * 18) + 'px';
+    floatersEl.appendChild(el);
+    setTimeout(() => el.remove(), dur * 1000 + 500);
+  }
+
+  setInterval(spawnFloater, 1200);
+  for (let i = 0; i < 6; i++) setTimeout(spawnFloater, i * 400);
+
+  // ===== ANIMATED COUNTER (increments slowly) =====
+  let displayCount = 1337420;
+  setInterval(() => {
+    displayCount += Math.floor(Math.random() * 3);
+    const s = String(displayCount);
+    const digits = digitsEl.querySelectorAll('.counter-digit');
+    if (digits.length !== s.length) {
+      // rebuild digits when length changes
+      digitsEl.innerHTML = '';
+      s.split('').forEach(ch => {
+        const span = document.createElement('span');
+        span.className = 'counter-digit';
+        span.textContent = ch;
+        span.style.animationDelay = (Math.random() * 3) + 's';
+        digitsEl.appendChild(span);
+      });
+    } else {
+      digits.forEach((d, i) => { d.textContent = s[i]; });
+    }
+    const footerEl = document.getElementById('footer-counter');
+    if (footerEl) {
+      footerEl.textContent = displayCount.toLocaleString();
+    }
+  }, 5000);
+
+  // ===== GLITTER on boxes =====
+  document.querySelectorAll('.box').forEach(box => {
+    const gc = document.createElement('div');
+    gc.className = 'glitter-container';
+    for (let i = 0; i < 10; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'glitter-dot';
+      dot.style.left   = Math.random() * 100 + '%';
+      dot.style.top    = Math.random() * 100 + '%';
+      dot.style.background = `hsl(${Math.random()*360},100%,70%)`;
+      dot.style.animationDelay = (Math.random() * 2) + 's';
+      dot.style.animationDuration = (0.5 + Math.random() * 1.5) + 's';
+      gc.appendChild(dot);
+    }
+    box.style.position = 'relative';
+    box.appendChild(gc);
+  });
+</script>
+</body>
+</html>
