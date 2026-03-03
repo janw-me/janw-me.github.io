@@ -916,7 +916,7 @@
   let lastSparkle = 0;
   function spawnSparkle(x, y) {
     const now = Date.now();
-    if (now - lastSparkle < 800) return;
+    if (now - lastSparkle < 8) return;
     lastSparkle = now;
     const el = document.createElement('div');
     el.className = 'sparkle';
